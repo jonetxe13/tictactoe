@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <cstdio>
 #include <cstdlib>
 #include <vector>
@@ -19,16 +20,21 @@ char jugador(){
 	return player;
 }
 
-void situacion(){
-	if (tablero[0][0] == tablero[1][0] && tablero[1][0] == tablero[2][0]){cout << "has ganado\n";}
-	else if (tablero[0][1] == tablero[1][1] && tablero[1][1] == tablero[2][1]){cout << "has ganado\n";}
-	else if (tablero[0][2] == tablero[1][2] && tablero[1][2] == tablero[2][2]){cout << "has ganado\n";}
-	else if (tablero[0][0] == tablero[0][1] && tablero[0][1] == tablero[0][2]){cout << "has ganado\n";}
-	else if (tablero[1][0] == tablero[1][1] && tablero[1][1] == tablero[1][2]){cout << "has ganado\n";}
-	else if (tablero[2][0] == tablero[2][1] && tablero[2][1] == tablero[2][2]){cout << "has ganado\n";}
-	else if (tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2]){cout << "has ganado\n";}
-	else if (tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0]){cout << "has ganado\n";}
-	else {cout << "siguiente movimiento\n";}
+string situacion(){
+	
+	string ganador;
+
+	if (tablero[0][0] == tablero[1][0] && tablero[1][0] == tablero[2][0] && tablero[0][0] != '_'){ganador = "has ganado\n"; cout << ganador;}
+	else if (tablero[0][1] == tablero[1][1] && tablero[1][1] == tablero[2][1] && tablero[0][1] != '_'){ganador = "has ganado\n"; cout << ganador;}
+	else if (tablero[0][2] == tablero[1][2] && tablero[1][2] == tablero[2][2] && tablero[0][2] != '_'){ganador = "has ganado\n"; cout << ganador;}
+	else if (tablero[0][0] == tablero[0][1] && tablero[0][1] == tablero[0][2] && tablero[0][0] != '_'){ganador = "has ganado\n"; cout << ganador;}
+	else if (tablero[1][0] == tablero[1][1] && tablero[1][1] == tablero[1][2] && tablero[1][0] != '_'){ganador = "has ganado\n"; cout << ganador;}
+	else if (tablero[2][0] == tablero[2][1] && tablero[2][1] == tablero[2][2] && tablero[2][0] != '_'){ganador = "has ganado\n"; cout << ganador;}
+	else if (tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2] && tablero[0][0] != '_'){ganador = "has ganado\n"; cout << ganador;}
+	else if (tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0] && tablero[0][2] != '_'){ganador = "has ganado\n"; cout << ganador;}
+	else {ganador = "siguiente movimiento\n"; cout << ganador;}
+
+	return ganador;
 }
 
 
@@ -50,18 +56,19 @@ void DibujarTablero(){
 	tablero[fila][columna] = jugador();
         turnoDeX = !turnoDeX;
 }
+
 int main(){
 
+	cout << "mete la fila y la columna en la que quieres poner la ficha del 0 al 2\n";	
+	
+	string final = "has ganado\n";
 	while(true){
-		DibujarTablero();
-		jugador();
-		situacion();
-	}
-	char stop;
-	cin << stop;
-	if(stop == ' '){
-		break;
-	} 
-	return 0;
+	        DibujarTablero();
+	        jugador();
+	        situacion();
+	}	
+
+	if(situacion() == final){exit(0);}
+	
 }
 
