@@ -68,7 +68,7 @@ int main(){
 	        situacion();
 	}	
 
-	
+	if(situacion() == final){exit(0);}
 	
 }
 
