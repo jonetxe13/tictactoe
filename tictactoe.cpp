@@ -13,7 +13,7 @@ char tablero[][3] = {{'_', '_', '_'},{'_', '_', '_'},{'_', '_', '_'}};
 
 char jugador(){
 
-        char player;
+    char player;
 	if (turnoDeX == false){ player = 'X';}
 	else if (turnoDeX == true){player = 'O';}
 	else {player = ' ';}
@@ -23,7 +23,7 @@ char jugador(){
 string situacion(){
 	
 	string ganador;
-
+ 
 	if (tablero[0][0] == tablero[1][0] && tablero[1][0] == tablero[2][0] && tablero[0][0] != '_'){ganador = "has ganado\n"; cout << ganador;}
 	else if (tablero[0][1] == tablero[1][1] && tablero[1][1] == tablero[2][1] && tablero[0][1] != '_'){ganador = "has ganado\n"; cout << ganador;}
 	else if (tablero[0][2] == tablero[1][2] && tablero[1][2] == tablero[2][2] && tablero[0][2] != '_'){ganador = "has ganado\n"; cout << ganador;}
@@ -33,20 +33,20 @@ string situacion(){
 	else if (tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2] && tablero[0][0] != '_'){ganador = "has ganado\n"; cout << ganador;}
 	else if (tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0] && tablero[0][2] != '_'){ganador = "has ganado\n"; cout << ganador;}
 	else {ganador = "siguiente movimiento\n"; cout << ganador;}
-
+ 
 	return ganador;
 }
 
 
 void DibujarTablero(){
 	
-        int fila;
-        int columna;
+    int fila;
+    int columna;
      
-        for(int i = 0; i < 3; i++){
-	        for (int j = 0; j < 3; j++){
-		        cout << tablero[i][j];
-		        cout << " ";
+	for(int i = 0; i < 3; i++){
+	    for (int j = 0; j < 3; j++){
+		    cout << tablero[i][j];
+		    cout << " ";
 		}
 		cout << "\n";
 	}
@@ -54,21 +54,16 @@ void DibujarTablero(){
 	cin >> columna;
         
 	tablero[fila][columna] = jugador();
-        turnoDeX = !turnoDeX;
+    	turnoDeX = !turnoDeX;
 }
 
 int main(){
 
 	cout << "mete la fila y la columna en la que quieres poner la ficha del 0 al 2\n";	
 	
-	string final = "has ganado\n";
-	while(true){
-	        DibujarTablero();
-	        jugador();
-	        situacion();
-	}	
-
-	if(situacion() == final){exit(0);}
-	
+	while (true){
+		DibujarTablero();
+		jugador();
+		situacion();
+	}
 }
-
